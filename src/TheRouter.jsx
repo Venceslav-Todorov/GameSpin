@@ -7,6 +7,7 @@ import TheTicTacToe from "./views/TheTictacToe";
 export default function TheRouter() {
   return (
     <>
+    
       <Routes>
         <Route path="/" index element={<TheHome />} />
         <Route path="wheel" element={<TheWheel />} />
