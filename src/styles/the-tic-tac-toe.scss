@@ -1,0 +1,111 @@
+.the-tic-tac-toe {
+  align-items: center;
+  display: flex;
+  height: calc(100vh - var(--header-height));
+  justify-content: center;
+  background-color: white;
+
+  .board {
+    align-items: center;
+    display: grid;
+    grid-template: repeat(3, min-content) / repeat(3, min-content);
+    gap: 5px;
+    height: fit-content;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+
+    &.board--winner_x,
+    &.board--winner_o {
+      &:after {
+        width: 110%;
+      }
+      &.board--winner_o {
+        &:after {
+          border-color: #ef908c;
+        }
+      }
+    }
+
+    //horizontal wins
+    // board--winner-move_1 is initial
+    &.board--winner-move_0 {
+      &:after {
+        top: 16.5%;
+      }
+    }
+    &.board--winner-move_2 {
+      &:after {
+        top: 83.5%;
+      }
+    }
+    //horizontal wins
+
+    // vertical wins
+    &.board--winner-move_3,
+    &.board--winner-move_4,
+    &.board--winner-move_5 {
+      &:after {
+        transform: rotate(90deg) translate(-50%, -50%);
+        top: 50%;
+      }
+      &.board--winner-move_3 {
+        &:after {
+          left: 16%;
+        }
+      }
+      &.board--winner-move_4 {
+        &:after {
+          left: 50%;
+        }
+      }
+      &.board--winner-move_5 {
+        &:after {
+          left: 83.5%;
+        }
+      }
+    }
+    // vertical wins
+
+    // diagonal wins
+    &.board--winner-move_6,
+    &.board--winner-move_7 {
+      &:after {
+        transform: rotate(45deg) translate(-50%, -50%);
+        top: 50%;
+      }
+      &.board--winner-move_7 {
+        &:after {
+          transform: rotate(-45deg) translate(-50%, -50%);
+        }
+      }
+    }
+    // diagonal wins
+
+    &::before {
+      background-color: #ddd;
+      content: "";
+      height: calc(100% - 10px);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      width: calc(100% - 10px);
+      z-index: -1;
+    }
+
+    &::after {
+      border-top: 18px solid #8c90ef;
+      border-radius: 10px;
+      content: "";
+      transform: translate(-50%, -50%);
+      position: absolute;
+      transform-origin: top left;
+      top: 50%;
+      left: 50%;
+      transition: all var(--transition-speed) var(--bez);
+      width: 0%;
+      z-index: 1;
+    }
+  }
+}

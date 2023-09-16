@@ -1,0 +1,40 @@
+.the-header {
+  align-items: center;
+  background: #252422;
+  display: flex;
+  height: var(--header-height);
+  justify-content: center;
+  padding: 10px 0;
+  transition: var(--transition);
+  width: 100%;
+
+  a {
+    position: relative;
+    width: 45px;
+
+    &:hover {
+      &:before {
+        transform: scale(1);
+      }
+      img {
+        transform: scale(0.8);
+      }
+    }
+
+    &:before {
+      background: #EB5E28;
+      border-radius: 40%;
+      content: "";
+      left: 0;
+      top: 0;
+      height: 100%;
+      position: absolute;
+      transform: scale(0);
+      transition: var(--transition);
+      width: 100%;
+    }
+    img {
+      transition: var(--transition);
+    }
+  }
+}

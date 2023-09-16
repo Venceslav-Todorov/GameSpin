@@ -1,0 +1,40 @@
+.the-box {
+  align-items: center;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  transition: var(--transition);
+  width: 150px;
+
+  &.the-box--selected {
+    img {
+      animation: box-selected 0.2s var(--bez) both;
+      filter: initial;
+      opacity: 1;
+    }
+  }
+
+  &:hover:not(.the-box--selected) {
+    img {
+      opacity: 1;
+    }
+  }
+
+  img {
+    filter: grayscale(1);
+    opacity: 0;
+    user-select: none;
+    transition: var(--transition);
+    width: 65%;
+  }
+
+}
+@keyframes box-selected {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
