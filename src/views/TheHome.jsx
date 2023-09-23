@@ -9,12 +9,12 @@ export default function TheHome() {
           <Link to="/wheel">
             <img src="../src/assets/img/card-wheel.svg" alt="" />
             <h1>Wheel</h1>
-            <p>Description</p>
+            <p>Game of chance where spinning wheel determines the winner</p>
           </Link>
           <Link to="/tic-tac-toe">
             <img src="../src/assets/img/card-tic-tac-toe.svg" alt="" />
             <h1>Tic Tac Toe</h1>
-            <p>Description</p>
+            <p>Classic board game for two players</p>
           </Link>
         </section>
       </div>

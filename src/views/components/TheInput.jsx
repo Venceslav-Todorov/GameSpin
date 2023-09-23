@@ -1,14 +1,17 @@
-import "../../styles/the-reusables.scss";
+import { memo } from 'react';
+import "../../styles/the-reusables.scss"; 
 
-export default function TheInput({ onInput, placeholder, modelValue, onEnter, disabled }) {
+function TheInput({ onInput, placeholder, modelValue, onEnter, disabled }) {
 
   function handleKeyDown(e) {
     if (e.key == "Enter") onEnter(modelValue);
   }
 
+const hasInput = modelValue ? "the-input--has-value" : "" 
+
   return (
     <>
-      <div className={`the-input ${modelValue ? "the-input--has-value" : ""}`}>
+      <div className={`the-input ${hasInput}`}>
         <input
           placeholder={placeholder ? placeholder : ""}
           value={modelValue}
@@ -26,3 +29,4 @@ export default function TheInput({ onInput, placeholder, modelValue, onEnter, di
   );
 }
 
+export default memo(TheInput)

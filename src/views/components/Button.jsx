@@ -1,13 +1,10 @@
+import { memo } from 'react';
 function Button({ onClick, children, color }) {
+  const buttonClass = `the-button ${color ? `the-button--${color}` : ""}`;
   return (
     <>
       <button
-        className={`the-button`}
-        // style={
-        //   backgroundColor
-        //     ? { backgroundColor: color }
-        //     : "currentColor"
-        // }
+        className={buttonClass}
         onClick={(e) => {
           e.preventDefault(), onClick();
         }}
@@ -18,4 +15,4 @@ function Button({ onClick, children, color }) {
   );
 }
 
-export default Button;
+export default memo(Button);

@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import Button from "./Button";
-function TheModal({ open, children, onClose }) {
-  if (!open) return null;
+function TheModal({ isOpen, children, canRemove, onClose, onRemove }) {
+  if (!isOpen) return null;
   // function handleKeyDown(e) {
   //   if (e.key == "Escape") onClose();
   // }
@@ -12,11 +12,12 @@ function TheModal({ open, children, onClose }) {
           <header></header>
           <main>{children}</main>
           <footer>
-            <div>
-              <Button onClick={() => onClose()}>Close</Button>
-            </div>
-            <Button test="red" onClick={() => null}>Remove</Button>
-            {/* <Button>Close</Button> */}
+            {canRemove && (
+              <Button color="red" onClick={() => onRemove()}>
+                Remove
+              </Button>
+            )}
+            <Button onClick={() => onClose()}>Close</Button>
           </footer>
         </section>
       </main>

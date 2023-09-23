@@ -65,7 +65,7 @@
 
 .the-button {
   appearance: button;
-  background-color: #1652f0;
+  background-color: var(--button--main);
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
@@ -80,18 +80,23 @@
   text-align: center;
   text-transform: none;
   transition: var(--transition);
+  touch-action: manipulation; 
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;
   width: fit-content;
 
+  &.the-button--red {
+    background-color: var(--button--red);
+    &:hover {
+      background-color: color-mix(in srgb, var(--button--red), transparent 50%);
+    }
+  }
+
   &:hover {
-    background-color: #0a46e4;
-    border-color: #0a46e4;
+    background-color: color-mix(in srgb, var(--button--main), transparent 50%);
   }
 
   &:disabled {
     opacity: 0.5;
   }
-
 }

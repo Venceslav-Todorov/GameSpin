@@ -66,29 +66,29 @@ export default function TheTicTacToe() {
     setShowWinnerModal(false);
     setCells([{}, {}, {}, {}, {}, {}, {}, {}, {}]);
   }
-
+  const winnerClass = theWinner ? `board--winner_${theWinner}` : "";
+  const winningMoveClass =
+    winningMove.current !== null
+      ? `board--winner-move_${winningMove.current}`
+      : "";
+  const boardClass = `board ${winnerClass} ${winningMoveClass}`;
   return (
     <>
       <main className="the-tic-tac-toe">
-        <section
-          className={`board ${theWinner ? `board--winner_${theWinner}` : ""} ${
-            winningMove.current !== null
-              ? ` board--winner-move_${winningMove.current}`
-              : ""
-          }`}
-        >
+        <section className={boardClass}>
           {cells.map((cell, i) => (
             <TheBox
               key={`${cell}-${i}`}
               type={cell.type ? cell.type : currentPlayer.current}
               isSelected={cell.isSelected}
+              disabled={theWinner}
               onClick={() => setSelectedCell(i)}
             />
           ))}
         </section>
       </main>
       <TheModal
-        open={showWinnerModal && theWinner}
+        isOpen={showWinnerModal && theWinner}
         onClose={() => resetTheGame()}
       >
         {theWinner}

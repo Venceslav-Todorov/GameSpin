@@ -1,14 +1,17 @@
-function Box({ onClick, isSelected, type }) {
+import { memo } from 'react';
+
+function Box({ onClick, disabled, isSelected, type }) {
+  const boxClass = `the-box ${isSelected ? "the-box--selected" : ""} ${disabled ? "the-box--disabled" : ""}`;
   return (
     <main
+      className={boxClass}
       onClick={(e) => {
         isSelected ? null : (e.preventDefault, onClick());
       }}
-      className={`the-box ${isSelected ? "the-box--selected" : ""}`}
     >
       <img src={`../../src/assets/img/${type}.svg`} alt="" />
     </main>
   );
 }
 
-export default Box;
+export default memo(Box);

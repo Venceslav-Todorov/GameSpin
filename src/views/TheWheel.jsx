@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import TheInput from "./components/TheInput";
 import TheModal from "./components/TheModal";
 
@@ -12,41 +12,48 @@ export default function TheWheel() {
     { label: "4", color: colors[3] },
     { label: "5", color: colors[4] },
   ]);
-  let isSpinning = useRef(false);
   let [inputValue, setInput] = useState("");
   let [theWinner, setWinner] = useState(undefined);
+  let isSpinning = false;
 
-  function addOption(o) {
-    if (!isSpinning.current) {
-      setInput("");
-      let optionColor = colors[0];
+  const addOption = useCallback(
+    (o) => {
+      if (!isSpinning) {
+        setInput("");
+        let optionColor = colors[0];
 
-      if (wheelOptions.length) {
-        let lastElemColor = wheelOptions[wheelOptions.length - 1].color;
+        if (wheelOptions.length) {
+          let lastElemColor = wheelOptions[wheelOptions.length - 1].color;
 
-        let filterMatchingColors = colors.filter((t) => t !== lastElemColor);
-        let randomColor = Math.floor(
-          Math.random() * (filterMatchingColors.length - 1)
-        );
-        optionColor = filterMatchingColors[randomColor];
+          let filterMatchingColors = colors.filter((t) => t !== lastElemColor);
+          let randomColor = Math.floor(
+            Math.random() * (filterMatchingColors.length - 1)
+          );
+          optionColor = filterMatchingColors[randomColor];
+        }
+
+        setWheelOptions([...wheelOptions, { label: o, color: optionColor }]);
       }
+    },
+    [colors, isSpinning, wheelOptions]
+  );
 
-      setWheelOptions([...wheelOptions, { label: o, color: optionColor }]);
-    }
-  }
-
-  function removeOption(i) {
-    if (!isSpinning.current) {
-      wheelOptions.splice(i, 1);
-      setWheelOptions([...wheelOptions]);
-    }
-  }
+  const removeOption = useCallback(
+    (i, removeWinner) => {
+      if (!isSpinning) {
+        let index = removeWinner ? wheelOptions.indexOf(removeWinner) : i;
+        wheelOptions.splice(index, 1);
+        setWheelOptions([...wheelOptions]);
+      }
+    },
+    [isSpinning, wheelOptions]
+  );
 
   const wheel = useRef();
   const spin = useRef();
   const PI = Math.PI;
   const TAU = 2 * PI;
-  const friction = 0.992; // 0.995=soft, 0.99=mid, 0.98=hard
+  const friction = 0.992; // 0.995=soft, 0.99=mild, 0.98=hard
   const totOpt = wheelOptions.length;
   let angVel = 0; // Angular velocity
   let ang = 0; // Angle in radians
@@ -101,13 +108,13 @@ export default function TheWheel() {
     }
   }
 
-  function spinWheel() {
-    if (!isSpinning.current && wheelOptions.length) {
-      isSpinning.current = true;
+  const spinWheel = useCallback(() => {
+    if (!isSpinning && wheelOptions.length) {
+      isSpinning = true;
       if (!angVel) angVel = rand(0.25, 0.45);
       animate();
     }
-  }
+  }, [angVel, isSpinning, wheelOptions]);
 
   function animate() {
     frame();
@@ -117,7 +124,7 @@ export default function TheWheel() {
   function frame() {
     if (!angVel) return;
     angVel *= friction; // Decrement velocity by friction
-    if (angVel < 0.002) (angVel = 0), (isSpinning.current = false); // Bring to stop
+    if (angVel < 0.002) (angVel = 0), (isSpinning = false); // Bring to stop
     ang += angVel; // Update angle
     ang %= TAU; // Normalize angle
     rotate();
@@ -125,7 +132,7 @@ export default function TheWheel() {
 
   function rotate() {
     const sector = wheelOptions[getIndex()];
-    if (!isSpinning.current && sector) setWinner(sector.label);
+    if (!isSpinning && sector) setWinner(sector);
     ctx.canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
     spin.current.style.background = sector.color;
   }
@@ -149,7 +156,7 @@ export default function TheWheel() {
           <TheInput
             placeholder="Enter option"
             modelValue={inputValue}
-            onInput={(e) => (!isSpinning.current ? setInput(e) : null)}
+            onInput={(e) => (!isSpinning ? setInput(e) : null)}
             onEnter={(e) => addOption(e)}
           />
           <div className="entries">
@@ -167,8 +174,15 @@ export default function TheWheel() {
         </section>
       </main>
 
-      <TheModal open={theWinner} onClose={() => setWinner(undefined)}>
-        {theWinner}
+      <TheModal
+        canRemove={true}
+        isOpen={theWinner}
+        onRemove={() => {
+          removeOption(false, theWinner), setWinner(undefined);
+        }}
+        onClose={() => setWinner(undefined)}
+      >
+        {theWinner ? theWinner.label : ""}
       </TheModal>
     </>
   );
