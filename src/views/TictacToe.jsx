@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import TheBox from "./components/TheBox";
-import TheModal from "./components/TheModal";
+import Box from "./components/Box";
+import Modal from "./components/Modal";
 
 export default function TheTicTacToe() {
   let [cells, setCells] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}]);
@@ -77,7 +77,7 @@ export default function TheTicTacToe() {
       <main className="the-tic-tac-toe">
         <section className={boardClass}>
           {cells.map((cell, i) => (
-            <TheBox
+            <Box
               key={`${cell}-${i}`}
               type={cell.type ? cell.type : currentPlayer.current}
               isSelected={cell.isSelected}
@@ -87,12 +87,12 @@ export default function TheTicTacToe() {
           ))}
         </section>
       </main>
-      <TheModal
+      <Modal
         isOpen={showWinnerModal && theWinner}
         onClose={() => resetTheGame()}
       >
         {theWinner}
-      </TheModal>
+      </Modal>
     </>
   );
 }

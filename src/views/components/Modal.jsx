@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import Button from "./Button";
-function TheModal({ isOpen, children, canRemove, onClose, onRemove }) {
+function Modal({ isOpen, children, canRemove, onClose, onRemove }) {
   if (!isOpen) return null;
   // function handleKeyDown(e) {
   //   if (e.key == "Escape") onClose();
@@ -26,4 +26,4 @@ function TheModal({ isOpen, children, canRemove, onClose, onRemove }) {
   );
 }
 
-export default TheModal;
+export default Modal;

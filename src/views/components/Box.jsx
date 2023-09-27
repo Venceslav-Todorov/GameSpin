@@ -1,7 +1,9 @@
-import { memo } from 'react';
+import { memo } from "react";
 
 function Box({ onClick, disabled, isSelected, type }) {
-  const boxClass = `the-box ${isSelected ? "the-box--selected" : ""} ${disabled ? "the-box--disabled" : ""}`;
+  const boxClass = `the-box ${isSelected ? "the-box--selected" : ""} ${
+    disabled ? "the-box--disabled" : ""
+  }`;
   return (
     <main
       className={boxClass}

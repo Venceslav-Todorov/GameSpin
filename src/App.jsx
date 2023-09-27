@@ -1,15 +1,15 @@
 import { BrowserRouter, Outlet } from "react-router-dom";
-import TheRouter from "./TheRouter";
-import TheHeader from "./views/components/TheHeader";
+import Router from "./Router";
+import Header from "./views/components/Header";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <TheHeader />
-        <TheRouter>
+        <Header />
+        <Router>
           <Outlet />
-        </TheRouter>
+        </Router>
       </BrowserRouter>
     </>
   );

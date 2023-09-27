@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import TheInput from "./components/TheInput";
-import TheModal from "./components/TheModal";
+import Modal from "./components/Modal";
 
 export default function TheWheel() {
   let colors = ["#A5BE00", "#679436", "#2A2A72", "#427AA1", "#064789"];
@@ -174,7 +174,7 @@ export default function TheWheel() {
         </section>
       </main>
 
-      <TheModal
+      <Modal
         canRemove={true}
         isOpen={theWinner}
         onRemove={() => {
@@ -183,7 +183,7 @@ export default function TheWheel() {
         onClose={() => setWinner(undefined)}
       >
         {theWinner ? theWinner.label : ""}
-      </TheModal>
+      </Modal>
     </>
   );
 }
