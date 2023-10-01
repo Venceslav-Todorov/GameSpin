@@ -19,7 +19,7 @@ Feel free to choose the plugin that best fits your preferences or project requir
 1. Clone this repository.
 2. Install dependencies using `npm install` or `yarn install`.
 3. Run the development server with `npm run dev` or `yarn dev`.
-4. Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
+4. Open your browser and navigate to [http://localhost:5173](http://localhost:5173).
 
 ## Additional Information
 

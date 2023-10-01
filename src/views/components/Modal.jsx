@@ -1,7 +1,8 @@
-import ReactDOM from "react-dom";
-import Button from "./Button";
+import ReactDOM from 'react-dom'
+import Button from './Button'
+import PropTypes from 'prop-types'
 function Modal({ isOpen, children, canRemove, onClose, onRemove }) {
-  if (!isOpen) return null;
+  if (!isOpen) return null
   // function handleKeyDown(e) {
   //   if (e.key == "Escape") onClose();
   // }
@@ -22,8 +23,19 @@ function Modal({ isOpen, children, canRemove, onClose, onRemove }) {
         </section>
       </main>
     </>,
-    document.getElementById("portal")
-  );
+    document.getElementById('portal'),
+  )
+}
+Modal.propTypes = {
+  onClose: PropTypes.func,
+  onRemove: PropTypes.func,
+  children: PropTypes.node,
+  isOpen: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.object,
+  ]),
+  canRemove: PropTypes.bool,
 }
 
-export default Modal;
+export default Modal

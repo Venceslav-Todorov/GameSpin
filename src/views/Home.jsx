@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 export default function TheHome() {
   return (
@@ -7,12 +7,15 @@ export default function TheHome() {
         <h1>GameSpin</h1>
         <section className="the-home_games">
           <Link to="/wheel">
-            <img src="../src/assets/img/card-wheel.svg" alt="" />
+            <img src="../src/assets/img/card-wheel.svg" alt="wheel" />
             <h1>Wheel</h1>
             <p>Game of chance where spinning wheel determines the winner</p>
           </Link>
           <Link to="/tic-tac-toe">
-            <img src="../src/assets/img/card-tic-tac-toe.svg" alt="" />
+            <img
+              src="../src/assets/img/card-tic-tac-toe.svg"
+              alt="tic-tac-toe"
+            />
             <h1>Tic Tac Toe</h1>
             <p>Classic board game for two players</p>
           </Link>
@@ -25,5 +28,5 @@ export default function TheHome() {
       <img className="cloud" src="../src/assets/img/cloud-4.png" alt="" />
       <img className="cloud" src="../src/assets/img/cloud-5.png" alt="" />
     </main>
-  );
+  )
 }

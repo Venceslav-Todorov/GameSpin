@@ -22,9 +22,9 @@
     }
 
     &:before {
-      background: #EB5E28;
+      background: var(--color--main-1);
       border-radius: 40%;
-      content: "";
+      content: '';
       left: 0;
       top: 0;
       height: 100%;

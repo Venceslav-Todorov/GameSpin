@@ -1,23 +1,38 @@
-import { memo, useCallback } from "react";
-function Button({ onClick, children, color }) {
-  const buttonClass = `the-button ${color ? `the-button--${color}` : ""}`;
+import { useCallback } from 'react'
+import PropTypes from 'prop-types'
 
-  const handleOnClick = useCallback(() => {
-    onClick();
-  }, [onClick]);
+function Button({ onClick, children, color }) {
+  const buttonClass = `the-button ${color ? `the-button--${color}` : ''}`
+
+  const handleOnClick = useCallback(
+    (e) => {
+      // emit onClick only when we have it as a prop
+      if (onClick()) {
+        e.preventDefault()
+        onClick()
+      }
+    },
+    [onClick],
+  )
 
   return (
     <>
       <button
         className={buttonClass}
         onClick={(e) => {
-          e.preventDefault(), handleOnClick();
+          handleOnClick(e)
         }}
       >
         {children}
       </button>
     </>
-  );
+  )
 }
 
-export default memo(Button);
+Button.propTypes = {
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+  color: PropTypes.string,
+}
+
+export default Button

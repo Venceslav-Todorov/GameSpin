@@ -1,32 +1,55 @@
-import { memo } from 'react';
-import "../../styles/the-reusables.scss"; 
+import { useCallback } from 'react'
+import '../../styles/the-reusables.scss'
+import PropTypes from 'prop-types'
 
 function TheInput({ onInput, placeholder, modelValue, onEnter, disabled }) {
-
   function handleKeyDown(e) {
-    if (e.key == "Enter") onEnter(modelValue);
+    if (e.key == 'Enter') handleEnter(modelValue)
   }
 
-const hasInput = modelValue ? "the-input--has-value" : "" 
+  const handleEnter = useCallback(
+    (e) => {
+      if (!disabled) onEnter(e)
+    },
+    [disabled, onEnter],
+  )
+
+  const handleInput = useCallback(
+    (e) => {
+      if (!disabled) onInput(e)
+    },
+    [disabled, onInput],
+  )
+
+  const hasInput = modelValue ? 'the-input--has-value' : ''
+  const disabledClass = disabled ? 'the-input--disabled' : ''
 
   return (
     <>
-      <div className={`the-input ${hasInput}`}>
+      <div className={`the-input ${hasInput} ${disabledClass}`}>
         <input
-          placeholder={placeholder ? placeholder : ""}
+          placeholder={placeholder ? placeholder : ''}
           value={modelValue}
           disabled={disabled}
           onKeyDown={handleKeyDown}
           onInput={(e) => {
-            e.preventDefault(), onInput(e.target.value);
+            e.preventDefault(), handleInput(e.target.value)
           }}
         />
-        <span className="go" onClick={() => onEnter(modelValue)}>
+        <span className="go" onClick={() => handleEnter(modelValue)}>
           GO
         </span>
       </div>
     </>
-  );
+  )
 }
 
-export default memo(TheInput)
+TheInput.propTypes = {
+  onInput: PropTypes.func,
+  onEnter: PropTypes.func,
+  disabled: PropTypes.bool,
+  modelValue: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+}
+
+export default TheInput

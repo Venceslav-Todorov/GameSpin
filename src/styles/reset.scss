@@ -1,16 +1,12 @@
 :root {
-  --color--main-1: #606c38;
-  --color--main-2: #283618;
-  --color--main-3: #fefae0;
-  --color--main-4: #dda15e;
-  --color--main-5: #bc6c25;
+  --color--main-1: #eb5e28;
   --button--main: #1652f0;
   --button--red: #ed6a5a;
 
   --bez: cubic-bezier(0, 0, 0.43, 1.49);
   --header-height: 60px;
   --transition-speed: 0.3s;
-  --font-family: "Press_Start_2P", cursive;
+  --font-family: 'Press_Start_2P', cursive;
   --transition-type: ease-out;
   --transition: var(--transition-speed) var(--transition-type);
 }

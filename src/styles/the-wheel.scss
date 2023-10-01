@@ -25,7 +25,9 @@
       .spin {
         align-items: center;
         background: #ffffff;
-        box-shadow: 0 0 0 8px #edede9, 0 0px 15px 5px rgba(0, 0, 0, 0.6);
+        box-shadow:
+          0 0 0 8px #edede9,
+          0 0px 15px 5px rgba(0, 0, 0, 0.6);
         border-radius: 50%;
         cursor: pointer;
         display: flex;
