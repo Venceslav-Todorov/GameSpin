@@ -1,12 +1,17 @@
 .the-header {
   align-items: center;
   background: #252422;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Optional: Add a box shadow
   display: flex;
   height: var(--header-height);
   justify-content: center;
-  padding: 10px 0;
+  // padding: 10px 0;
   transition: var(--transition);
+  position: fixed;
+  top: -1px;
+  left: 0;
   width: 100%;
+  z-index: 100;
 
   a {
     position: relative;

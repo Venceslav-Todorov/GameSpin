@@ -1,6 +1,6 @@
-import { BrowserRouter, Outlet } from "react-router-dom";
-import Router from "./Router";
-import Header from "./views/components/Header";
+import { BrowserRouter, Outlet } from 'react-router-dom'
+import Router from './Router'
+import Header from './views/components/Header'
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         </Router>
       </BrowserRouter>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

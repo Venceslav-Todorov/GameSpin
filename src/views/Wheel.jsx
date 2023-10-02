@@ -138,7 +138,12 @@ export default function TheWheel() {
   function frame() {
     if (!angVel) return
     angVel *= friction // Decrement velocity by friction
-    if (angVel < 0.002) (angVel = 0), (isSpinning.current = false) // Bring to stop
+    // stop rotation
+    if (angVel < 0.002) {
+      angVel = 0
+      isSpinning.current = false
+      setDisabledInput(false)
+    }
     ang += angVel // Update angle
     ang %= TAU // Normalize angle
     rotate()

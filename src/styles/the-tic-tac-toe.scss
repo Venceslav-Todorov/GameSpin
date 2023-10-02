@@ -1,14 +1,17 @@
 .the-tic-tac-toe {
   align-items: center;
   display: flex;
-  height: calc(100vh - var(--header-height));
+  height: var(--page-height);
+  padding-top: var(--header-height);
   justify-content: center;
   background-color: white;
 
   .board {
     align-items: center;
     display: grid;
-    grid-template: repeat(3, min-content) / repeat(3, min-content);
+    grid-template:
+      repeat(3, clamp(100px, 10vw, 150px)) /
+      repeat(3, clamp(100px, 10vw, 150px));
     gap: 5px;
     height: fit-content;
     justify-content: center;
@@ -39,7 +42,6 @@
         top: 83.5%;
       }
     }
-    //horizontal wins
 
     // vertical wins
     &.board--winner-move_3,
@@ -65,7 +67,6 @@
         }
       }
     }
-    // vertical wins
 
     // diagonal wins
     &.board--winner-move_6,
@@ -80,11 +81,10 @@
         }
       }
     }
-    // diagonal wins
 
     &::before {
       background-color: #ddd;
-      content: "";
+      content: '';
       height: calc(100% - 10px);
       left: 50%;
       top: 50%;
@@ -97,7 +97,7 @@
     &::after {
       border-top: 18px solid #8c90ef;
       border-radius: 10px;
-      content: "";
+      content: '';
       transform: translate(-50%, -50%);
       position: absolute;
       transform-origin: top left;

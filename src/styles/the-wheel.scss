@@ -1,14 +1,14 @@
 .the-wheel {
   background: #efefef;
   display: flex;
-  height: 100%;
+  height: var(--page-height);
+  padding-top: var(--header-height);
   gap: 10px;
   justify-content: space-between;
 
   .wheel-section {
     align-items: center;
     display: flex;
-    height: calc(100vh - var(--header-height));
     flex-basis: 70%;
     justify-content: flex-end;
 
@@ -16,6 +16,7 @@
       align-items: center;
       position: relative;
       display: flex;
+      overflow: hidden;
       justify-content: center;
 
       .wheel {
@@ -38,12 +39,14 @@
         position: absolute;
         top: 50%;
         left: 50%;
+        min-height: 35px;
+        min-width: 35px;
         transform: translate(-50%, -50%);
         transition: var(--transition);
         width: 10%;
 
         &:after {
-          content: "";
+          content: '';
           border: 10px solid transparent;
           border-bottom-color: #edede9;
           border-top: none;
@@ -101,6 +104,25 @@
           }
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .the-wheel {
+    flex-direction: column;
+    align-items: center;
+    .wheel-section {
+      .wheel-wrapper {
+        .wheel {
+          max-width: 350px;
+        }
+      }
+    }
+
+    .input-and-entries {
+      border-radius: 4px;
+      flex-basis: 50%;
+      width: calc(100% - 10px);
     }
   }
 }
